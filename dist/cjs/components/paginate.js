@@ -74,6 +74,7 @@ var Main = function (_a) {
     }, [page, setPage, totalPageCount]);
     var pageRangeEvent = function (event) {
         changeSize(+event.target.value);
+        setPage(1);
     };
     return ((0, jsx_runtime_1.jsxs)("div", __assign({ className: 'paginate' }, { children: [(0, jsx_runtime_1.jsxs)("div", __assign({ className: 'paginateBox' }, { children: [showTotalRecord && ((0, jsx_runtime_1.jsx)("div", __assign({ className: 'textPage' }, { children: (0, jsx_runtime_1.jsxs)("div", { children: [textTotal, ":", totalCount] }) }))), showCurrentPage && ((0, jsx_runtime_1.jsx)("div", __assign({ className: 'textPage' }, { children: totalCount && totalCount > pageSize && ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [textCurrent, ": ", page] })) }))), showNumberOfPage && ((0, jsx_runtime_1.jsx)("div", __assign({ className: 'textPage' }, { children: totalCount && totalCount > pageSize && ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [textNumber, ": ", totalPageCount] })) })))] })), (0, jsx_runtime_1.jsxs)("div", __assign({ className: 'paginateBox' }, { children: [(0, jsx_runtime_1.jsxs)("div", { children: [showPageArrow && totalCount && totalCount > pageSize && ((0, jsx_runtime_1.jsx)("button", __assign({ onClick: function () {
                                     return pageChanging(PaginateType.PREV, 1);

@@ -46,7 +46,7 @@ export interface PropsTypes {
     textEmpty?: string
     textPage?: string
     rtl?: boolean
-    onPageChange: (current: number, size: number) => void
+    onPageChange?: (current: number, size: number) => void
 }
 
 const range = [5, 10, 20, 50, 100, 200, 500]
@@ -61,7 +61,7 @@ const Main = ({
     rows,
     loading = 0,
     pageSize = 20,
-    onPageChange,
+    onPageChange = (): void => {},
     showTotalRecord = false,
     showCurrentPage = false,
     showNumberOfPage = false,
@@ -132,7 +132,10 @@ const Main = ({
     }, [pageSize])
 
     return (
-        <div className={`angrid ${theme} ${className}`}>
+        <div
+            className={`angrid ${theme} ${className}`}
+            style={{ minHeight: rows.length === 0 ? '300px' : '' }}
+        >
             <div className='asax'>
                 <Table
                     rowHeight={rowHeight}

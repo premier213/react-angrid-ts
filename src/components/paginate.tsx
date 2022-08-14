@@ -92,6 +92,7 @@ export const Main = ({
         event: React.ChangeEvent<HTMLSelectElement>
     ): void => {
         changeSize(+event.target.value)
+        setPage(1)
     }
 
     return (

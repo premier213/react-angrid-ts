@@ -16,7 +16,7 @@ var jsx_runtime_1 = require("react/jsx-runtime");
 var icons_1 = require("./icons");
 var IsEmpty = function (_a) {
     var textEmpty = _a.textEmpty;
-    return ((0, jsx_runtime_1.jsxs)("div", __assign({ className: 'isEmpty' }, { children: [(0, jsx_runtime_1.jsx)(icons_1.EmptyIcon, {}), (0, jsx_runtime_1.jsx)("div", __assign({ style: {
+    return ((0, jsx_runtime_1.jsxs)("div", __assign({ className: 'isEmpty' }, { children: [(0, jsx_runtime_1.jsx)("div", __assign({ className: 'icon' }, { children: (0, jsx_runtime_1.jsx)(icons_1.EmptyIcon, {}) })), (0, jsx_runtime_1.jsx)("div", __assign({ style: {
                     color: 'rgb(149 147 147)',
                     textAlign: 'center',
                 } }, { children: textEmpty }))] })));

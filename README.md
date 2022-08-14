@@ -95,6 +95,7 @@ const columns = [
 | textTotal         | string  | false   | string     |
 | textNumber        | string  | false   | string     |
 | textEmpty         | string  | false   | string     |
+| textPage          | string  | false   | string     |
 | rtl               | false   | false   | boolean    |
 | onPageChange      | -       | true    | function   |
 

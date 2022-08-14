@@ -39,6 +39,6 @@ export interface PropsTypes {
     textEmpty?: string;
     textPage?: string;
     rtl?: boolean;
-    onPageChange: (current: number, size: number) => void;
+    onPageChange?: (current: number, size: number) => void;
 }
 export declare const Angrid: import("react").MemoExoticComponent<({ className, theme, rowHeight, showRowNumber, columnNumberTitle, columns, rows, loading, pageSize, onPageChange, showTotalRecord, showCurrentPage, showNumberOfPage, showPageRange, showPageSelect, showPageNumber, showPageArrow, bordered, textCurrent, textTotal, textNumber, textEmpty, textPage, rtl, }: PropsTypes) => JSX.Element>;

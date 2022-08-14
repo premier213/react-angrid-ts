@@ -7,7 +7,9 @@ export type IsEmptyProps = {
 
 export const IsEmpty: React.FC<IsEmptyProps> = ({ textEmpty }) => (
     <div className='isEmpty'>
-        <EmptyIcon />
+        <div className='icon'>
+            <EmptyIcon />
+        </div>
         <div
             style={{
                 color: 'rgb(149 147 147)',
