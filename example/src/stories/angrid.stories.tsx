@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { Angrid } from 'react-angrid'
+import { Angrid } from 'react-angrid-ts'
 
 export default {
     title: 'Angrid',
