@@ -119,7 +119,7 @@ Default.args = {
     rows: data,
     columns,
     rtl: false,
-    minHeight: 300,
+    rowHeight: 40,
     columnNumberTitle: 'number',
     loading: false,
     pageSize: 5,

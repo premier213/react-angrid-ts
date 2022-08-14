@@ -24,6 +24,7 @@ export const Main = ({
     className,
     rtl,
     rowsInit,
+    rowHeight,
     sortable,
 }: Props): JSX.Element => {
     const [isSort, setIsSort] = useState<boolean>(false)
@@ -87,7 +88,10 @@ export const Main = ({
                         <tbody className='tbody'>
                             {!empty &&
                                 rows?.map((row) => (
-                                    <tr key={uuidv4()}>
+                                    <tr
+                                        key={uuidv4()}
+                                        style={{ height: rowHeight }}
+                                    >
                                         {showRowNumber && (
                                             <td>{rowsInit.indexOf(row) + 1}</td>
                                         )}
