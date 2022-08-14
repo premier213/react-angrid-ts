@@ -11999,7 +11999,7 @@ raw-loader@^4.0.2:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
-"react-angrid@link:..":
+"react-angrid-ts@link:..":
   version "0.0.0"
   uid ""
 
