@@ -7,4 +7,4 @@ export interface ReturnType {
     totalPageCount: number;
     pages: number[];
 }
-export declare const usePagination: (totalCount: PropsTypes['totalCount'], pageSize?: PropsTypes['pageSize']) => ReturnType;
+export declare const usePagination: (totalCount: number, pageSize?: PropsTypes['pageSize']) => ReturnType;

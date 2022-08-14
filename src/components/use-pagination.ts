@@ -11,7 +11,7 @@ export interface ReturnType {
 }
 
 export const usePagination = (
-    totalCount: PropsTypes['totalCount'],
+    totalCount: number,
     pageSize: PropsTypes['pageSize'] = 1
 ): ReturnType => {
     const pages = []

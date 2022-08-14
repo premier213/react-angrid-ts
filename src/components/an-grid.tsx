@@ -30,7 +30,6 @@ export interface PropsTypes {
     showRowNumber: boolean
     columns: Columns[]
     rows: RowsType[]
-    totalCount: number | undefined
     pageSize?: number
     loading?: boolean | 0
     showTotalRecord?: boolean
@@ -59,7 +58,6 @@ const Main = ({
     columnNumberTitle = '#',
     columns,
     rows,
-    totalCount,
     loading = 0,
     pageSize = 20,
     onPageChange,
@@ -82,19 +80,24 @@ const Main = ({
     const [isRow, setIsRow] = useState<PropsTypes['rows']>([])
     const [isSize, setIsSize] = useState(pageSize)
     const [page, setPage] = useState<number>(1)
+    const indexOfLastRecord = page * isSize
+    const indexOfFirstRecord = indexOfLastRecord - isSize
+
     const sortRows = useCallback(
         (value: string, desc: boolean): void => {
-            const sort = rows.sort((a, b) => {
-                if (!desc) {
-                    return b[value] > a[value] ? 1 : -1
-                }
+            const sort = rows
+                ?.slice(indexOfFirstRecord, indexOfLastRecord)
+                .sort((a, b) => {
+                    if (!desc) {
+                        return b[value] > a[value] ? 1 : -1
+                    }
 
-                return a[value] > b[value] ? 1 : -1
-            })
+                    return a[value] > b[value] ? 1 : -1
+                })
 
             setIsRow(sort)
         },
-        [rows]
+        [indexOfFirstRecord, indexOfLastRecord, rows]
     )
 
     const handleSetPage = (pageNumber: number): void => {
@@ -108,7 +111,7 @@ const Main = ({
                 setIsEmpty(true)
             } else {
                 setIsEmpty(false)
-                setIsRow(rows)
+                setIsRow(rows?.slice(indexOfFirstRecord, indexOfLastRecord))
             }
         } else {
             setIsLoading(false)
@@ -116,10 +119,10 @@ const Main = ({
                 setIsEmpty(true)
             } else {
                 setIsEmpty(false)
-                setIsRow(rows)
+                setIsRow(rows?.slice(indexOfFirstRecord, indexOfLastRecord))
             }
         }
-    }, [loading, rows])
+    }, [indexOfFirstRecord, indexOfLastRecord, loading, rows])
 
     useEffect(() => {
         if (pageSize && range.includes(pageSize)) {
@@ -136,12 +139,12 @@ const Main = ({
                 <Table
                     textEmpty={textEmpty}
                     rtl={rtl}
-                    currentPage={page}
                     className={bordered ? 'bordered' : ''}
                     showRowNumber={showRowNumber}
                     columnNumberTitle={columnNumberTitle}
                     columns={columns}
                     rows={isRow}
+                    rowsInit={rows}
                     pageSize={isSize}
                     empty={isEmpty}
                     loading={isLoading}
@@ -156,7 +159,7 @@ const Main = ({
                         textTotal={textTotal}
                         textNumber={textNumber}
                         rtl={rtl}
-                        totalCount={totalCount}
+                        totalCount={rows.length}
                         pageSize={isSize}
                         onPageChange={onPageChange}
                         range={range}

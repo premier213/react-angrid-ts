@@ -13,6 +13,7 @@ enum PaginateType {
 type Props = Partial<PropsTypes> & {
     range: number[]
     page: number
+    totalCount: number
     setPage: (page: number) => void
 }
 

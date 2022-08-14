@@ -20,7 +20,7 @@ var icons_1 = require("./icons");
 var is_empty_1 = require("./is-empty");
 var loading_1 = require("./loading");
 var Main = function (_a) {
-    var showRowNumber = _a.showRowNumber, columnNumberTitle = _a.columnNumberTitle, columns = _a.columns, rows = _a.rows, empty = _a.empty, textEmpty = _a.textEmpty, loading = _a.loading, className = _a.className, rtl = _a.rtl, currentPage = _a.currentPage, sortable = _a.sortable;
+    var showRowNumber = _a.showRowNumber, columnNumberTitle = _a.columnNumberTitle, columns = _a.columns, rows = _a.rows, empty = _a.empty, textEmpty = _a.textEmpty, loading = _a.loading, className = _a.className, rtl = _a.rtl, rowsInit = _a.rowsInit, sortable = _a.sortable;
     var _b = (0, react_1.useState)(false), isSort = _b[0], setIsSort = _b[1];
     var _c = (0, react_1.useState)(''), isSortField = _c[0], setIsSortField = _c[1];
     var handleSort = (0, react_1.useCallback)(function (value) {
@@ -34,10 +34,7 @@ var Main = function (_a) {
                                                     return handleSort(column.field);
                                                 } }, { children: isSort &&
                                                     isSortField === column.field ? ((0, jsx_runtime_1.jsx)(icons_1.BiSortDown, {})) : ((0, jsx_runtime_1.jsx)(icons_1.BiSortUp, {})) })))] }), (0, uuid_1.v4)())); })] }) }), (0, jsx_runtime_1.jsxs)("tbody", __assign({ className: 'tbody' }, { children: [!empty &&
-                                    (rows === null || rows === void 0 ? void 0 : rows.map(function (row) { return ((0, jsx_runtime_1.jsxs)("tr", { children: [showRowNumber && ((0, jsx_runtime_1.jsx)("td", { children: rows.indexOf(row) +
-                                                    1 +
-                                                    rows.length * currentPage -
-                                                    rows.length })), columns === null || columns === void 0 ? void 0 : columns.map(function (c) { return ((0, jsx_runtime_1.jsx)("td", { children: c.render
+                                    (rows === null || rows === void 0 ? void 0 : rows.map(function (row) { return ((0, jsx_runtime_1.jsxs)("tr", { children: [showRowNumber && ((0, jsx_runtime_1.jsx)("td", { children: rowsInit.indexOf(row) + 1 })), columns === null || columns === void 0 ? void 0 : columns.map(function (c) { return ((0, jsx_runtime_1.jsx)("td", { children: c.render
                                                     ? c.render(row)
                                                     : row[c.field] }, (0, uuid_1.v4)())); })] }, (0, uuid_1.v4)())); })), empty && ((0, jsx_runtime_1.jsx)("tr", { children: (0, jsx_runtime_1.jsx)("td", { children: empty && ((0, jsx_runtime_1.jsx)(is_empty_1.IsEmpty, { textEmpty: textEmpty })) }) }))] }))] })) }))] })));
 };

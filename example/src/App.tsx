@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { Angrid } from 'react-angrid-ts'
+import { Angrid } from '../../dist/esm'
 
 const columns = [
     {
@@ -54,7 +54,6 @@ function App() {
                 showRowNumber
                 columns={columns}
                 rows={createUsers()}
-                totalCount={100}
                 onPageChange={(page, size) => console.log(page, size)}
                 pageSize={10}
                 showCurrentPage

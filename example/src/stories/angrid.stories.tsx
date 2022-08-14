@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { Angrid } from 'react-angrid-ts'
 
 export default {
-    title: 'Angrid',
+    title: 'react-Angrid-ts',
     component: Angrid,
     argTypes: {
         theme: {
@@ -14,6 +14,7 @@ export default {
             },
         },
     },
+
     parameters: { actions: { argTypesRegex: '^on.*' } },
 } as ComponentMeta<typeof Angrid>
 
@@ -27,8 +28,7 @@ const columns = [
     },
     {
         field: 'fullName',
-        headerName:
-            'FullnameFullnameFullnameFullnameFullnameFullnameFullnameFullnameFullnameFullnameFullnameFullnameFullnameFullname',
+        headerName: 'Fullname',
         description: 'full name of user',
 
         sortable: true,
@@ -83,6 +83,26 @@ const data = [
         fullName: faker.name.findName(),
         age: faker.datatype.number(100),
     },
+    {
+        userId: faker.unique(faker.datatype.number),
+        fullName: faker.name.findName(),
+        age: faker.datatype.number(100),
+    },
+    {
+        userId: faker.unique(faker.datatype.number),
+        fullName: faker.name.findName(),
+        age: faker.datatype.number(100),
+    },
+    {
+        userId: faker.unique(faker.datatype.number),
+        fullName: faker.name.findName(),
+        age: faker.datatype.number(100),
+    },
+    {
+        userId: faker.unique(faker.datatype.number),
+        fullName: faker.name.findName(),
+        age: faker.datatype.number(100),
+    },
 ]
 
 const Template: ComponentStory<typeof Angrid> = (arguments_) => {
@@ -101,7 +121,6 @@ Default.args = {
     rtl: false,
     minHeight: 300,
     columnNumberTitle: 'number',
-    totalCount: 10,
     loading: false,
     pageSize: 5,
     showTotalRecord: true,

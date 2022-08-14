@@ -59,7 +59,7 @@ const columns = [
                 showRowNumber
                 columns={columns}
                 rows={createUsers()}
-                totalCount={100}
+
                 onPageChange={(page, size) => console.log(page, size)}
                 pageSize={10}
                 showCurrentPage
@@ -79,9 +79,8 @@ const columns = [
 | minHeight         | 300     | false   | number     |
 | columnNumberTitle | #       | false   | string     |
 | showRowNumber     | true    | true    | boolean    |
-| columns           |         | true    | object[]   |
-| rows              |         | true    | array      |
-| totalCount        |         | true    | number     |
+| columns           | []      | true    | object[]   |
+| rows              | []      | true    | array      |
 | pageSize          | 20      | false   | number     |
 | loading           | 0       | false   | boolean/0  |
 | showTotalRecord   | false   | false   | boolean    |
