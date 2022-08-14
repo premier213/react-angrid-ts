@@ -1,24 +1,34 @@
 {
-    "name": "react-angrid",
-    "version": "1.3.0",
+    "name": "react-angrid-ts",
+    "version": "1.0.0",
     "private": false,
     "license": "MIT",
+    "title": "React Angrid ts",
     "main": "./dist/cjs/index.js",
     "module": "./dist/esm/index.js",
     "types": "./dist/esm/index.d.ts",
-    "description": "a react data grid with supporting for paging, sorting, rtl, etc",
-    "author": "Shahrooz Bazrafshan <kingofday.b@gmail.com> (https://kingofday.ir/)",
+    "description": "react-angrid-ts framework components for React, powered by TypeScript.",
+    "author": "Meysam Saberi <premierp1213@gmail.com> (https://meysamsaberi.ir/)",
     "keywords": [
-        "angrid",
+        "table",
         "react",
         "data-grid",
-        "paging",
-        "sortable",
-        "rtl"
+        "grid",
+        "react-angrid-ts",
+        "rtl",
+        "ui",
+        "react-table"
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/kingofday/react-angrid"
+        "url": "https://github.com/premier213/react-angrid-ts"
+    },
+    "homepage": "https://github.com/premier213/react-angrid-ts",
+    "bugs": {
+        "url": "https://github.com/premier213/react-angrid-ts/issues"
+    },
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org/"
     },
     "scripts": {
         "build": "yarn sass && eslint ./src --fix && yarn build:esm && yarn build:cjs && yarn copy-files",

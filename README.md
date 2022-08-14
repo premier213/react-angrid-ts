@@ -1,173 +1,109 @@
-# react-angrid
+# react-angrid-ts [Demo](https://link-url-here.org)
 
-
-react-angrid is a free and light component in react for data grid with supporting:
-
-  - paging 
-  - sortable
-  - rtl
-  - other language
-
-![sample](src/assets/sample.png)
+![react-angrid-ts](/example/public/1.png 'react angrid ts').
 
 ## Installation
 
-react-angrid requires react "^17.0.1", react-dome "^17.0.1" to run.
-```
-npm i react-angrid --save
-```
-### Usage
-Minimal Usage:
+`npm install react-angrid-ts`
+
+## Features
+
+-   custom css
+-   localization
+-   rtl support
+-   dark theme
+-   pagination
+-   sortable
+
+## Usage Example
 
 ```
-import Angrid from "rect-angrid";
-...
-  const columns = [
-    {
-      field: "fullname",
-      headerName: "First & last Name",
-      description: "name of user",
-      width: 50,
-    },
-    {
-      field: "age",
-      headerName: "Age",
-      description: "age of user",
-      width: 50,
-    },
-    .
-    .
-    .
-    ];
-    const rows = [
-    {
-        fullname:"shahrooz bazrafshan"
-    },
-    {
-        
-    }
-    ];
-      <AnGrid
-        columns={columns}
-        rows={rows}
-        showRowNumber={true}
-        disabledPaging={true}
-      />
-...
-```
-Advanced Usage:
-```
-    import Angrid from "rect-angrid";
+import {Angrid} from "rect-angrid-ts";
 
-    const columns = [
+const columns = [
     {
-      field: "fullname",
-      headerName: "First & last Name",
-      description: "name of user",
-      width: 50,
+        field: 'userId',
+        headerName: 'User Id',
+        description: 'user id that is unique',
+        width: 30,
+        sortable: true,
     },
     {
-      field: "age",
-      headerName: "Age",
-      description: "age of user",
-      width: 50,
-      renderCell:(info)=><strong>Age is : {info.data.age}</strong>
+        field: 'fullName',
+        headerName: 'Fullname',
+        description: 'full name of user',
+        width: 100,
+        sortable: true,
     },
-    .
-    .
-    .
-    ];
-    ...
-    //some required states
-    const [loading, setLoading] = useState(false);
-    const [rows, setRows] = useState([]);
-    const [filter, setFilter] = useState({
-        pageSize: 4,
-        pageNumber: 1,
-    });
-    const [totalCount, setTotalCount] = useState(3);
-  
-    let active = true;
-    const _delete = (data) => {
-    setRows(rows.filter(x => x.userId !== data.userId))
-  }
-  
-    const _fetchData = async () => {
-    console.log('=== fetch data');
-    if (!active) return;
-    //mock api, you can call your api then set data to table like commented line below
-    return new Promise((resolve) => {
-      setLoading(true);
-      setTimeout(() => {
-          setRows(data);// SetRows, note that data comes from api and must be array of objects
-        setTotalCount(7);//=== set total page size for pagination part
-        resolve();
-        setLoading(false);
-      }, 2000);
-    });
-  }
-
-  useEffect(() => {
-    _fetchData();
-    return () => {
-      active = false;
-    }
-  }, [filter]);
-    ...
-      <AnGrid
-        loading={loading}
-        columns={columns}
-        rows={rows}
-        showRowNumber={true}
-        pageSize={filter.pageSize}
-        pageNumber={filter.pageNumber}
-        totalCount={totalCount}
-        onPageChange={_handlePageChange}
-        theme="dark"
-        minHeight={300}
-        emptyList={<strong>There Is No Info</strong>}
-      />
-
-```
-#### Props
-- **columns:** must be array of object like:
- ```
-    [{
-      field: ,//name of property that in data must be shown(string)
-      headerName: ,the string that shows in header.(string)
-      description: ,//tooltip string
-      width: ,//column width(int),
-      sortable:,//indicate that by clicking on culmn it can b sorted or not(bool)
-      renderCell:(rowInfo)=>{return xxx;}//an optional function that returns a component for each cell, it recieve an object that conatins row data,if this be defined, then the return component of it be shown in each column cell,
-      cellClass:an optional function that recieve data and returns a class object to be set on each row cells
+    {
+        field: 'age',
+        headerName: 'Age',
+        description: 'age of user',
+        width: 50,
+        sortable: true,
     },
-    .
-    .
-    .
-    ]
-```
-- **rows:** must be array of object that contains field property to be shown
-- **loading:** toggle loader overlay when fetching data
-- **showRowNumber:** if true append a row number as first column(bool,default is false)
-- **pageSize:** the page size of data, you can set it after api fetch(int)
-- **pageNumber:** the page Size of data,you can set it after api fetch(int)
-- **totalCount:** total count of data rows,you can set it after api fetch(int)
-- **onPageChange:** this is a function that triggers after changeing a page number in component and gives it new page number as parameter,you can use to call api and set new data
-- **strings:** an object of used strings that can be change in other languages:
-```
-{
-  notFound:'There Is No Data',
-  indexTitle:'Row Number',
-  pageNumber:'Page Number'
-}
-```
-- **emptyList:** a component that renred if rows length is zero
-- **minHeight:** minimum height of component(int, default 300px)
-- **theme:** theme for component(string,default is dark)
-- **customPagination:** if exist, the component show up instead od default pagination
- 
-##### Todos
+    {
+        field: 'delete',
+        headerName: 'delete(component cell)',
+        description: 'delete user',
+        width: 50,
+        render: (row: any) => {
+            return <button onClick={() => console.log(row)}>delete</button>
+        },
+    },
+]
 
- - Add Responsive configuration
- - Add More Theme
+<div className='App' dir='rtl'>
+            <Angrid
+                rtl
+                showRowNumber
+                columns={columns}
+                rows={createUsers()}
+                totalCount={100}
+                onPageChange={(page, size) => console.log(page, size)}
+                pageSize={10}
+                showCurrentPage
+                showNumberOfPage
+                showTotalRecord
+                minHeight={600}
+            />
+        </div>
+```
 
+## Props
+
+| Parameter         | Default | Require | Type       |
+| ----------------- | ------- | ------- | ---------- |
+| className         | -       | false   | string     |
+| theme             | light   | false   | dark/light |
+| minHeight         | 300     | false   | number     |
+| columnNumberTitle | #       | false   | string     |
+| showRowNumber     | -       | true    | boolean    |
+| columns           |         | true    | object[]   |
+| rows              |         | true    | array      |
+| totalCount        |         | true    | number     |
+| pageSize          | 20      | false   | number     |
+| loading           | 0       | false   | boolean/0  |
+| showTotalRecord   | false   | false   | boolean    |
+| showCurrentPage   | false   | false   | boolean    |
+| showNumberOfPage  | false   | false   | boolean    |
+| showPageRange     | true    | false   | boolean    |
+| showPageSelect    | true    | false   | boolean    |
+| showPageNumber    | true    | false   | boolean    |
+| showPageArrow     | true    | false   | boolean    |
+| bordered          | false   | false   | boolean    |
+| textCurrent       | string  | false   | string     |
+| textTotal         | string  | false   | string     |
+| textNumber        | string  | false   | string     |
+| textEmpty         | string  | false   | string     |
+| rtl               | false   | false   | boolean    |
+| onPageChange      | -       | true    | function   |
+
+### Pull Request
+
+-   unit test
+-   customize theme
+-   customize dark mode
+-   add filter
+-   create Document
+-   Responsive
