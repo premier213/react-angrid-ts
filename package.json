@@ -23,7 +23,7 @@
         "type": "git",
         "url": "https://github.com/premier213/react-angrid-ts"
     },
-    "homepage": "https://github.com/premier213/react-angrid-ts",
+    "homepage": "https://react-angrid-ts.vercel.app/",
     "bugs": {
         "url": "https://github.com/premier213/react-angrid-ts/issues"
     },
