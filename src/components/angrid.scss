@@ -21,8 +21,8 @@
                         position: relative;
                         border-left: thin solid #5c7988;
                         button {
-                            margin: 0 5px;
-                            position: absolute;
+                            margin: 0 -6px;
+                            position: relative;
                             top: calc(50% - 15px);
                             cursor: pointer;
                             width: 30px;
@@ -32,16 +32,21 @@
                             border-radius: 50%;
                             border: none;
                             font-size: large;
-
                             &:hover {
                                 background-color: #34454d;
                             }
                         }
                         .rtl {
-                            left: 0;
+                            float: left;
                         }
                         .ltr {
-                            right: 0;
+                            float: right;
+                        }
+                    }
+                    .sort {
+                        span {
+                            top: 5px;
+                            position: relative;
                         }
                     }
                 }

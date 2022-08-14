@@ -25,9 +25,9 @@ export var Main = function (_a) {
         setIsSortField(value);
         sortable(value, isSort);
     }, [isSort, sortable]);
-    return (_jsxs("div", __assign({ className: className }, { children: [loading && _jsx(Loading, {}), _jsx("table", __assign({ style: { width: '100%' } }, { children: !loading && (_jsxs(_Fragment, { children: [_jsx("thead", { children: _jsxs("tr", { children: [showRowNumber && (_jsx("th", __assign({ style: { width: 25 } }, { children: columnNumberTitle }))), columns === null || columns === void 0 ? void 0 : columns.map(function (column) { return (_jsxs("th", __assign({ className: 'sort', title: column.description, style: {
+    return (_jsxs("div", __assign({ className: className }, { children: [loading && _jsx(Loading, {}), _jsx("table", __assign({ style: { width: '100%' } }, { children: !loading && (_jsxs(_Fragment, { children: [_jsx("thead", { children: _jsxs("tr", { children: [showRowNumber && (_jsx("th", __assign({ style: { width: 25 } }, { children: columnNumberTitle }))), columns === null || columns === void 0 ? void 0 : columns.map(function (column) { return (_jsxs("th", __assign({ className: column.sortable ? 'sort' : '', title: column.description, style: {
                                             width: column.width,
-                                        } }, { children: [column.headerName, column.sortable && (_jsx("button", __assign({ type: 'button', className: rtl ? 'rtl' : 'ltr', onClick: function () {
+                                        } }, { children: [_jsx("span", { children: column.headerName }), column.sortable && (_jsx("button", __assign({ type: 'button', className: rtl ? 'rtl' : 'ltr', onClick: function () {
                                                     return handleSort(column.field);
                                                 } }, { children: isSort &&
                                                     isSortField === column.field ? (_jsx(BiSortDown, {})) : (_jsx(BiSortUp, {})) })))] }), uuidv4())); })] }) }), _jsxs("tbody", __assign({ className: 'tbody' }, { children: [!empty &&

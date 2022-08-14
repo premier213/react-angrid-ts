@@ -53,14 +53,16 @@ export const Main = ({
                                 )}
                                 {columns?.map((column) => (
                                     <th
-                                        className='sort'
+                                        className={
+                                            column.sortable ? 'sort' : ''
+                                        }
                                         key={uuidv4()}
                                         title={column.description}
                                         style={{
                                             width: column.width,
                                         }}
                                     >
-                                        {column.headerName}
+                                        <span>{column.headerName}</span>
                                         {column.sortable && (
                                             <button
                                                 type='button'
