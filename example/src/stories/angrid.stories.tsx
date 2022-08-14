@@ -22,47 +22,47 @@ const columns = [
         field: 'userId',
         headerName: 'User Id',
         description: 'user id that is unique',
-        width: 30,
+
         sortable: true,
     },
     {
         field: 'fullName',
-        headerName: 'Fullname',
+        headerName:
+            'FullnameFullnameFullnameFullnameFullnameFullnameFullnameFullnameFullnameFullnameFullnameFullnameFullnameFullname',
         description: 'full name of user',
-        width: 100,
+
         sortable: true,
     },
     {
         field: 'age',
         headerName: 'Age',
         description: 'age of user',
-        width: 50,
+
         sortable: true,
     },
     {
         field: 'delete',
         headerName: 'delete(component cell)',
         description: 'delete user',
-        width: 50,
     },
 ]
 
 const data = [
-    // {
-    //     userId: faker.unique(faker.datatype.number),
-    //     fullName: faker.name.findName(),
-    //     age: faker.datatype.number(100),
-    // },
-    // {
-    //     userId: faker.unique(faker.datatype.number),
-    //     fullName: faker.name.findName(),
-    //     age: faker.datatype.number(100),
-    // },
-    // {
-    //     userId: faker.unique(faker.datatype.number),
-    //     fullName: faker.name.findName(),
-    //     age: faker.datatype.number(100),
-    // },
+    {
+        userId: faker.unique(faker.datatype.number),
+        fullName: faker.name.findName(),
+        age: faker.datatype.number(100),
+    },
+    {
+        userId: faker.unique(faker.datatype.number),
+        fullName: faker.name.findName(),
+        age: faker.datatype.number(100),
+    },
+    {
+        userId: faker.unique(faker.datatype.number),
+        fullName: faker.name.findName(),
+        age: faker.datatype.number(100),
+    },
     {
         userId: faker.unique(faker.datatype.number),
         fullName: faker.name.findName(),
