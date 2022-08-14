@@ -11999,10 +11999,9 @@ raw-loader@^4.0.2:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
-react-angrid-ts@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-angrid-ts/-/react-angrid-ts-1.0.0.tgz#d3187e258a607205046c28594cc140bba23b1473"
-  integrity sha512-stEWWnzWYPj7uP8kfRK2u5CLE3OXk08eZ0rzIcaqMN9EA2Wuzw4GpwKu5RabMy15iaKOmebF3vNy+64POrKiVw==
+"react-angrid-ts@link:..":
+  version "0.0.0"
+  uid ""
 
 react-app-polyfill@^3.0.0:
   version "3.0.0"
