@@ -44,11 +44,12 @@ export interface PropsTypes {
     textTotal?: string
     textNumber?: string
     textEmpty?: string
+    textPage?: string
     rtl?: boolean
     onPageChange: (current: number, size: number) => void
 }
 
-const range = [10, 20, 50, 100, 200, 500]
+const range = [5, 10, 20, 50, 100, 200, 500]
 
 const Main = ({
     className = '',
@@ -73,6 +74,7 @@ const Main = ({
     textTotal = locale.fa.total,
     textNumber = locale.fa.number,
     textEmpty = locale.fa.empty,
+    textPage = locale.fa.page,
     rtl = false,
 }: PropsTypes): JSX.Element => {
     const [isLoading, setIsLoading] = useState(true)
@@ -82,7 +84,6 @@ const Main = ({
     const [page, setPage] = useState<number>(1)
     const indexOfLastRecord = page * isSize
     const indexOfFirstRecord = indexOfLastRecord - isSize
-
     const sortRows = useCallback(
         (value: string, desc: boolean): void => {
             const sort = rows
@@ -170,6 +171,8 @@ const Main = ({
                         showPageArrow={showPageArrow}
                         page={page}
                         setPage={handleSetPage}
+                        textPage={textPage}
+                        changeSize={setIsSize}
                     />
                 )}
             </div>

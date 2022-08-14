@@ -65,7 +65,7 @@ const columns = [
                 showCurrentPage
                 showNumberOfPage
                 showTotalRecord
-                minHeight={600}
+                rowHeight={30}
             />
         </div>
 ```
@@ -76,7 +76,7 @@ const columns = [
 | ----------------- | ------- | ------- | ---------- |
 | className         | -       | false   | string     |
 | theme             | light   | false   | dark/light |
-| minHeight         | 300     | false   | number     |
+| rowHeight         | 30      | false   | number     |
 | columnNumberTitle | #       | false   | string     |
 | showRowNumber     | true    | true    | boolean    |
 | columns           | []      | true    | object[]   |

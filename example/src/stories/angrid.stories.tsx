@@ -132,9 +132,10 @@ Default.args = {
     showPageArrow: true,
     showCurrentPage: true,
     textCurrent: 'Current Page',
-    textTotal: 'all pages',
+    textTotal: 'all rows',
     textNumber: 'Page Count',
     textEmpty: 'No Data',
+    textPage: 'Page',
     bordered: false,
-    onPageChange: (page: number) => console.log(page),
+    onPageChange: (page: number, size: number) => console.log(page, size),
 }

@@ -14,6 +14,7 @@ type Props = Partial<PropsTypes> & {
     range: number[]
     page: number
     totalCount: number
+    changeSize: (size: number) => void
     setPage: (page: number) => void
 }
 
@@ -34,15 +35,16 @@ export const Main = ({
     textCurrent,
     rtl,
     page,
+    textPage,
+    changeSize,
     setPage,
 }: Props): JSX.Element => {
     const [slices, setSlices] = useState<number[]>([])
-    const [rangePageSize, setRangePageSize] = useState<number>(pageSize)
     const { pages, totalPageCount } = usePagination(totalCount, pageSize)
 
     useEffect(() => {
         if (typeof onPageChange !== 'undefined') {
-            onPageChange(page, rangePageSize)
+            onPageChange(page, pageSize)
         }
         if (pages.length > 5) {
             let slicer = [1, 2, 3, 4, 5]
@@ -58,7 +60,7 @@ export const Main = ({
             setSlices(pages)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pageSize, onPageChange, page, rangePageSize, totalPageCount])
+    }, [pageSize, onPageChange, page, pageSize, totalPageCount])
 
     /**
      * @description: handle paginate selection
@@ -85,6 +87,12 @@ export const Main = ({
         },
         [page, setPage, totalPageCount]
     )
+
+    const pageRangeEvent = (
+        event: React.ChangeEvent<HTMLSelectElement>
+    ): void => {
+        changeSize(+event.target.value)
+    }
 
     return (
         <div className='paginate'>
@@ -175,16 +183,14 @@ export const Main = ({
                 {showPageRange && (
                     <div className='rangePage'>
                         <select
-                            value={rangePageSize}
-                            onChange={(event): void =>
-                                setRangePageSize(+event.target.value)
-                            }
+                            value={pageSize}
+                            onChange={(event): void => pageRangeEvent(event)}
                         >
                             {range.map((item: number) => (
                                 <option value={item} key={uuidv4()}>
                                     {rtl
-                                        ? `${item} / ${totalCount}`
-                                        : `${totalCount} / ${item}`}
+                                        ? `${item} / ${textPage || ''}`
+                                        : `${textPage || ''} / ${item}`}
                                 </option>
                             ))}
                         </select>

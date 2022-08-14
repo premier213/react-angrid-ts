@@ -4,11 +4,13 @@ export declare const locale: {
         total: string;
         number: string;
         empty: string;
+        page: string;
     };
     fa: {
         current: string;
         total: string;
         number: string;
         empty: string;
+        page: string;
     };
 };
