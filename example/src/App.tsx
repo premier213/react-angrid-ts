@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { Angrid } from 'react-angrid'
+import { Angrid } from 'react-angrid-ts'
 
 const columns = [
     {
