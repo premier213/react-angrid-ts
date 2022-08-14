@@ -12,6 +12,8 @@ enum PaginateType {
 
 type Props = Partial<PropsTypes> & {
     range: number[]
+    page: number
+    setPage: (page: number) => void
 }
 
 export const Main = ({
@@ -30,8 +32,9 @@ export const Main = ({
     textTotal,
     textCurrent,
     rtl,
+    page,
+    setPage,
 }: Props): JSX.Element => {
-    const [page, setPage] = useState(1)
     const [slices, setSlices] = useState<number[]>([])
     const [rangePageSize, setRangePageSize] = useState<number>(pageSize)
     const { pages, totalPageCount } = usePagination(totalCount, pageSize)
@@ -79,7 +82,7 @@ export const Main = ({
                     break
             }
         },
-        [page, totalPageCount]
+        [page, setPage, totalPageCount]
     )
 
     return (
@@ -114,99 +117,79 @@ export const Main = ({
                     </div>
                 )}
             </div>
-            {totalCount && totalCount > pageSize && (
-                <div className='paginateBox'>
-                    {/* button select page */}
-                    <div>
-                        {showPageArrow && (
-                            <button
-                                onClick={(): void =>
-                                    pageChanging(PaginateType.PREV, 1)
-                                }
-                                type='button'
-                                className={page === 1 ? 'disabled' : ''}
-                            >
-                                {rtl ? <FiChevronRight /> : <FiChevronLeft />}
-                            </button>
-                        )}
 
-                        {showPageNumber && (
-                            <span>
-                                {slices.map((item) => (
-                                    <button
-                                        key={uuidv4()}
-                                        className={
-                                            item === page ? 'active' : ''
-                                        }
-                                        onClick={(): void =>
-                                            pageChanging(
-                                                PaginateType.SELECT,
-                                                item
-                                            )
-                                        }
-                                        type='button'
-                                    >
-                                        {item}
-                                    </button>
-                                ))}
-                            </span>
-                        )}
-
-                        {showPageArrow && (
-                            <button
-                                onClick={(): void =>
-                                    pageChanging(PaginateType.NEXT, 1)
-                                }
-                                type='button'
-                                className={
-                                    page === totalPageCount ? 'disabled' : ''
-                                }
-                            >
-                                {rtl ? <FiChevronLeft /> : <FiChevronRight />}
-                            </button>
-                        )}
-                    </div>
-                    {/* select page */}
-                    {showPageSelect && (
-                        <div className='selectPage'>
-                            <select
-                                value={page}
-                                onChange={(event): void =>
-                                    pageChanging(
-                                        PaginateType.SELECT,
-                                        +event.target.value
-                                    )
-                                }
-                            >
-                                {pages.map((item) => (
-                                    <option value={item} key={uuidv4()}>
-                                        {item}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+            <div className='paginateBox'>
+                {/* button select page */}
+                <div>
+                    {showPageArrow && totalCount && totalCount > pageSize && (
+                        <button
+                            onClick={(): void =>
+                                pageChanging(PaginateType.PREV, 1)
+                            }
+                            type='button'
+                            className={page === 1 ? 'disabled' : ''}
+                        >
+                            {rtl ? <FiChevronRight /> : <FiChevronLeft />}
+                        </button>
                     )}
-                    {/* page range */}
-                    {showPageRange && (
-                        <div className='rangePage'>
-                            <select
-                                value={rangePageSize}
-                                onChange={(event): void =>
-                                    setRangePageSize(+event.target.value)
-                                }
-                            >
-                                {range.map((item: number) => (
-                                    <option value={item} key={uuidv4()}>
-                                        {rtl
-                                            ? `${item} / ${totalCount}`
-                                            : `${totalCount} / ${item}`}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+
+                    {showPageNumber && totalCount && totalCount > pageSize && (
+                        <span>
+                            {slices.map((item) => (
+                                <button
+                                    key={uuidv4()}
+                                    className={item === page ? 'active' : ''}
+                                    onClick={(): void =>
+                                        pageChanging(PaginateType.SELECT, item)
+                                    }
+                                    type='button'
+                                >
+                                    {item}
+                                </button>
+                            ))}
+                        </span>
                     )}
                 </div>
-            )}
+                {/* select page */}
+                {showPageSelect && totalCount && totalCount > pageSize && (
+                    <div className='selectPage'>
+                        <select
+                            value={page}
+                            onChange={(event): void =>
+                                pageChanging(
+                                    PaginateType.SELECT,
+                                    +event.target.value
+                                )
+                            }
+                        >
+                            {pages.map((item) => (
+                                <option value={item} key={uuidv4()}>
+                                    {item}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                )}
+                {/* page range */}
+                {showPageRange && (
+                    <div className='rangePage'>
+                        <select
+                            value={rangePageSize}
+                            onChange={(event): void =>
+                                setRangePageSize(+event.target.value)
+                            }
+                        >
+                            {range.map((item: number) => (
+                                <option value={item} key={uuidv4()}>
+                                    {rtl
+                                        ? `${item} / ${totalCount}`
+                                        : `${totalCount} / ${item}`}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                )}
+            </div>
         </div>
     )
 }

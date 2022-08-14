@@ -77,7 +77,8 @@
         "uuid": "^8.3.2"
     },
     "files": [
-        "/dist"
+        "/dist",
+        "README.md"
     ],
     "eslintConfig": {
         "extends": [

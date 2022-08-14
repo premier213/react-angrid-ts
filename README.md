@@ -78,7 +78,7 @@ const columns = [
 | theme             | light   | false   | dark/light |
 | minHeight         | 300     | false   | number     |
 | columnNumberTitle | #       | false   | string     |
-| showRowNumber     | -       | true    | boolean    |
+| showRowNumber     | true    | true    | boolean    |
 | columns           |         | true    | object[]   |
 | rows              |         | true    | array      |
 | totalCount        |         | true    | number     |

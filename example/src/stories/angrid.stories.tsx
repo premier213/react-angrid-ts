@@ -48,21 +48,21 @@ const columns = [
 ]
 
 const data = [
-    {
-        userId: faker.unique(faker.datatype.number),
-        fullName: faker.name.findName(),
-        age: faker.datatype.number(100),
-    },
-    {
-        userId: faker.unique(faker.datatype.number),
-        fullName: faker.name.findName(),
-        age: faker.datatype.number(100),
-    },
-    {
-        userId: faker.unique(faker.datatype.number),
-        fullName: faker.name.findName(),
-        age: faker.datatype.number(100),
-    },
+    // {
+    //     userId: faker.unique(faker.datatype.number),
+    //     fullName: faker.name.findName(),
+    //     age: faker.datatype.number(100),
+    // },
+    // {
+    //     userId: faker.unique(faker.datatype.number),
+    //     fullName: faker.name.findName(),
+    //     age: faker.datatype.number(100),
+    // },
+    // {
+    //     userId: faker.unique(faker.datatype.number),
+    //     fullName: faker.name.findName(),
+    //     age: faker.datatype.number(100),
+    // },
     {
         userId: faker.unique(faker.datatype.number),
         fullName: faker.name.findName(),

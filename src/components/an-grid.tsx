@@ -55,7 +55,7 @@ const Main = ({
     className = '',
     theme = 'light',
     minHeight = 300,
-    showRowNumber,
+    showRowNumber = true,
     columnNumberTitle = '#',
     columns,
     rows,
@@ -81,6 +81,7 @@ const Main = ({
     const [isEmpty, setIsEmpty] = useState(false)
     const [isRow, setIsRow] = useState<PropsTypes['rows']>([])
     const [isSize, setIsSize] = useState(pageSize)
+    const [page, setPage] = useState<number>(1)
     const sortRows = useCallback(
         (value: string, desc: boolean): void => {
             const sort = rows.sort((a, b) => {
@@ -95,6 +96,10 @@ const Main = ({
         },
         [rows]
     )
+
+    const handleSetPage = (pageNumber: number): void => {
+        setPage(pageNumber)
+    }
 
     useEffect(() => {
         if (typeof loading !== 'number') {
@@ -131,11 +136,13 @@ const Main = ({
                 <Table
                     textEmpty={textEmpty}
                     rtl={rtl}
+                    currentPage={page}
                     className={bordered ? 'bordered' : ''}
                     showRowNumber={showRowNumber}
                     columnNumberTitle={columnNumberTitle}
                     columns={columns}
                     rows={isRow}
+                    pageSize={isSize}
                     empty={isEmpty}
                     loading={isLoading}
                     sortable={(value: string, sort: boolean): void =>
@@ -160,6 +167,8 @@ const Main = ({
                         showPageSelect={showPageSelect}
                         showPageNumber={showPageNumber}
                         showPageArrow={showPageArrow}
+                        page={page}
+                        setPage={handleSetPage}
                     />
                 )}
             </div>
