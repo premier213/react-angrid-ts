@@ -31,7 +31,7 @@ export interface PropsTypes {
     columns: Columns[]
     rows: RowsType[]
     pageSize?: number
-    loading?: boolean | 0
+    loading?: boolean
     showTotalRecord?: boolean
     showCurrentPage?: boolean
     showNumberOfPage?: boolean
@@ -59,7 +59,7 @@ const Main = ({
     columnNumberTitle = '#',
     columns,
     rows,
-    loading = 0,
+    loading = false,
     pageSize = 20,
     onPageChange = (): void => {},
     showTotalRecord = false,
@@ -106,22 +106,12 @@ const Main = ({
     }
 
     useEffect(() => {
-        if (typeof loading !== 'number') {
-            setIsLoading(loading)
-            if (rows.length === 0) {
-                setIsEmpty(true)
-            } else {
-                setIsEmpty(false)
-                setIsRow(rows?.slice(indexOfFirstRecord, indexOfLastRecord))
-            }
+        setIsLoading(loading)
+        if (rows.length === 0) {
+            setIsEmpty(true)
         } else {
-            setIsLoading(false)
-            if (rows.length === 0) {
-                setIsEmpty(true)
-            } else {
-                setIsEmpty(false)
-                setIsRow(rows?.slice(indexOfFirstRecord, indexOfLastRecord))
-            }
+            setIsEmpty(false)
+            setIsRow(rows?.slice(indexOfFirstRecord, indexOfLastRecord))
         }
     }, [indexOfFirstRecord, indexOfLastRecord, loading, rows])
 
@@ -155,7 +145,7 @@ const Main = ({
                     }
                 />
 
-                {!isEmpty && (
+                {!isEmpty && !isLoading && (
                     <Paginate
                         textCurrent={textCurrent}
                         textTotal={textTotal}

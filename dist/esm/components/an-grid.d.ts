@@ -24,7 +24,7 @@ export interface PropsTypes {
     columns: Columns[];
     rows: RowsType[];
     pageSize?: number;
-    loading?: boolean | 0;
+    loading?: boolean;
     showTotalRecord?: boolean;
     showCurrentPage?: boolean;
     showNumberOfPage?: boolean;

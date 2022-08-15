@@ -27,7 +27,7 @@ import { Paginate } from './paginate';
 import { Table } from './table';
 var range = [5, 10, 20, 50, 100, 200, 500];
 var Main = function (_a) {
-    var _b = _a.className, className = _b === void 0 ? '' : _b, _c = _a.theme, theme = _c === void 0 ? 'light' : _c, _d = _a.rowHeight, rowHeight = _d === void 0 ? 30 : _d, _e = _a.showRowNumber, showRowNumber = _e === void 0 ? true : _e, _f = _a.columnNumberTitle, columnNumberTitle = _f === void 0 ? '#' : _f, columns = _a.columns, rows = _a.rows, _g = _a.loading, loading = _g === void 0 ? 0 : _g, _h = _a.pageSize, pageSize = _h === void 0 ? 20 : _h, _j = _a.onPageChange, onPageChange = _j === void 0 ? function () { } : _j, _k = _a.showTotalRecord, showTotalRecord = _k === void 0 ? false : _k, _l = _a.showCurrentPage, showCurrentPage = _l === void 0 ? false : _l, _m = _a.showNumberOfPage, showNumberOfPage = _m === void 0 ? false : _m, _o = _a.showPageRange, showPageRange = _o === void 0 ? true : _o, _p = _a.showPageSelect, showPageSelect = _p === void 0 ? true : _p, _q = _a.showPageNumber, showPageNumber = _q === void 0 ? true : _q, _r = _a.showPageArrow, showPageArrow = _r === void 0 ? true : _r, _s = _a.bordered, bordered = _s === void 0 ? false : _s, _t = _a.textCurrent, textCurrent = _t === void 0 ? locale.fa.current : _t, _u = _a.textTotal, textTotal = _u === void 0 ? locale.fa.total : _u, _v = _a.textNumber, textNumber = _v === void 0 ? locale.fa.number : _v, _w = _a.textEmpty, textEmpty = _w === void 0 ? locale.fa.empty : _w, _x = _a.textPage, textPage = _x === void 0 ? locale.fa.page : _x, _y = _a.rtl, rtl = _y === void 0 ? false : _y;
+    var _b = _a.className, className = _b === void 0 ? '' : _b, _c = _a.theme, theme = _c === void 0 ? 'light' : _c, _d = _a.rowHeight, rowHeight = _d === void 0 ? 30 : _d, _e = _a.showRowNumber, showRowNumber = _e === void 0 ? true : _e, _f = _a.columnNumberTitle, columnNumberTitle = _f === void 0 ? '#' : _f, columns = _a.columns, rows = _a.rows, _g = _a.loading, loading = _g === void 0 ? false : _g, _h = _a.pageSize, pageSize = _h === void 0 ? 20 : _h, _j = _a.onPageChange, onPageChange = _j === void 0 ? function () { } : _j, _k = _a.showTotalRecord, showTotalRecord = _k === void 0 ? false : _k, _l = _a.showCurrentPage, showCurrentPage = _l === void 0 ? false : _l, _m = _a.showNumberOfPage, showNumberOfPage = _m === void 0 ? false : _m, _o = _a.showPageRange, showPageRange = _o === void 0 ? true : _o, _p = _a.showPageSelect, showPageSelect = _p === void 0 ? true : _p, _q = _a.showPageNumber, showPageNumber = _q === void 0 ? true : _q, _r = _a.showPageArrow, showPageArrow = _r === void 0 ? true : _r, _s = _a.bordered, bordered = _s === void 0 ? false : _s, _t = _a.textCurrent, textCurrent = _t === void 0 ? locale.fa.current : _t, _u = _a.textTotal, textTotal = _u === void 0 ? locale.fa.total : _u, _v = _a.textNumber, textNumber = _v === void 0 ? locale.fa.number : _v, _w = _a.textEmpty, textEmpty = _w === void 0 ? locale.fa.empty : _w, _x = _a.textPage, textPage = _x === void 0 ? locale.fa.page : _x, _y = _a.rtl, rtl = _y === void 0 ? false : _y;
     var _z = useState(true), isLoading = _z[0], setIsLoading = _z[1];
     var _0 = useState(false), isEmpty = _0[0], setIsEmpty = _0[1];
     var _1 = useState([]), isRow = _1[0], setIsRow = _1[1];
@@ -48,25 +48,13 @@ var Main = function (_a) {
         setPage(pageNumber);
     };
     useEffect(function () {
-        if (typeof loading !== 'number') {
-            setIsLoading(loading);
-            if (rows.length === 0) {
-                setIsEmpty(true);
-            }
-            else {
-                setIsEmpty(false);
-                setIsRow(rows === null || rows === void 0 ? void 0 : rows.slice(indexOfFirstRecord, indexOfLastRecord));
-            }
+        setIsLoading(loading);
+        if (rows.length === 0) {
+            setIsEmpty(true);
         }
         else {
-            setIsLoading(false);
-            if (rows.length === 0) {
-                setIsEmpty(true);
-            }
-            else {
-                setIsEmpty(false);
-                setIsRow(rows === null || rows === void 0 ? void 0 : rows.slice(indexOfFirstRecord, indexOfLastRecord));
-            }
+            setIsEmpty(false);
+            setIsRow(rows === null || rows === void 0 ? void 0 : rows.slice(indexOfFirstRecord, indexOfLastRecord));
         }
     }, [indexOfFirstRecord, indexOfLastRecord, loading, rows]);
     useEffect(function () {
@@ -76,6 +64,6 @@ var Main = function (_a) {
     }, [pageSize]);
     return (_jsx("div", __assign({ className: "angrid ".concat(theme, " ").concat(className), style: { minHeight: rows.length === 0 ? '300px' : '' } }, { children: _jsxs("div", __assign({ className: 'asax' }, { children: [_jsx(Table, { rowHeight: rowHeight, textEmpty: textEmpty, rtl: rtl, className: bordered ? 'bordered' : '', showRowNumber: showRowNumber, columnNumberTitle: columnNumberTitle, columns: columns, rows: isRow, pageSize: isSize, currentPage: page, empty: isEmpty, loading: isLoading, sortable: function (value, sort) {
                         return sortRows(value, sort);
-                    } }), !isEmpty && (_jsx(Paginate, { textCurrent: textCurrent, textTotal: textTotal, textNumber: textNumber, rtl: rtl, totalCount: rows.length, pageSize: isSize, onPageChange: onPageChange, range: range, showTotalRecord: showTotalRecord, showCurrentPage: showCurrentPage, showNumberOfPage: showNumberOfPage, showPageRange: showPageRange, showPageSelect: showPageSelect, showPageNumber: showPageNumber, showPageArrow: showPageArrow, page: page, setPage: handleSetPage, textPage: textPage, changeSize: setIsSize }))] })) })));
+                    } }), !isEmpty && !isLoading && (_jsx(Paginate, { textCurrent: textCurrent, textTotal: textTotal, textNumber: textNumber, rtl: rtl, totalCount: rows.length, pageSize: isSize, onPageChange: onPageChange, range: range, showTotalRecord: showTotalRecord, showCurrentPage: showCurrentPage, showNumberOfPage: showNumberOfPage, showPageRange: showPageRange, showPageSelect: showPageSelect, showPageNumber: showPageNumber, showPageArrow: showPageArrow, page: page, setPage: handleSetPage, textPage: textPage, changeSize: setIsSize }))] })) })));
 };
 export var Angrid = memo(Main);
