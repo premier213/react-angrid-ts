@@ -10,6 +10,15 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Angrid = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
@@ -30,14 +39,14 @@ var Main = function (_a) {
     var indexOfLastRecord = page * isSize;
     var indexOfFirstRecord = indexOfLastRecord - isSize;
     var sortRows = (0, react_1.useCallback)(function (value, desc) {
-        var sort = rows === null || rows === void 0 ? void 0 : rows.slice(indexOfFirstRecord, indexOfLastRecord).sort(function (a, b) {
+        var sort = __spreadArray([], isRow, true).sort(function (a, b) {
             if (!desc) {
-                return b[value] > a[value] ? 1 : -1;
+                return b[value] < a[value] ? 1 : -1;
             }
-            return a[value] > b[value] ? 1 : -1;
+            return b[value] > a[value] ? 1 : -1;
         });
         setIsRow(sort);
-    }, [indexOfFirstRecord, indexOfLastRecord, rows]);
+    }, [isRow]);
     var handleSetPage = function (pageNumber) {
         setPage(pageNumber);
     };
@@ -68,7 +77,7 @@ var Main = function (_a) {
             setIsSize(pageSize);
         }
     }, [pageSize]);
-    return ((0, jsx_runtime_1.jsx)("div", __assign({ className: "angrid ".concat(theme, " ").concat(className), style: { minHeight: rows.length === 0 ? '300px' : '' } }, { children: (0, jsx_runtime_1.jsxs)("div", __assign({ className: 'asax' }, { children: [(0, jsx_runtime_1.jsx)(table_1.Table, { rowHeight: rowHeight, textEmpty: textEmpty, rtl: rtl, className: bordered ? 'bordered' : '', showRowNumber: showRowNumber, columnNumberTitle: columnNumberTitle, columns: columns, rows: isRow, rowsInit: rows, pageSize: isSize, empty: isEmpty, loading: isLoading, sortable: function (value, sort) {
+    return ((0, jsx_runtime_1.jsx)("div", __assign({ className: "angrid ".concat(theme, " ").concat(className), style: { minHeight: rows.length === 0 ? '300px' : '' } }, { children: (0, jsx_runtime_1.jsxs)("div", __assign({ className: 'asax' }, { children: [(0, jsx_runtime_1.jsx)(table_1.Table, { rowHeight: rowHeight, textEmpty: textEmpty, rtl: rtl, className: bordered ? 'bordered' : '', showRowNumber: showRowNumber, columnNumberTitle: columnNumberTitle, columns: columns, rows: isRow, pageSize: isSize, currentPage: page, empty: isEmpty, loading: isLoading, sortable: function (value, sort) {
                         return sortRows(value, sort);
                     } }), !isEmpty && ((0, jsx_runtime_1.jsx)(paginate_1.Paginate, { textCurrent: textCurrent, textTotal: textTotal, textNumber: textNumber, rtl: rtl, totalCount: rows.length, pageSize: isSize, onPageChange: onPageChange, range: range, showTotalRecord: showTotalRecord, showCurrentPage: showCurrentPage, showNumberOfPage: showNumberOfPage, showPageRange: showPageRange, showPageSelect: showPageSelect, showPageNumber: showPageNumber, showPageArrow: showPageArrow, page: page, setPage: handleSetPage, textPage: textPage, changeSize: setIsSize }))] })) })));
 };

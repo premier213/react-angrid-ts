@@ -9,7 +9,7 @@ import { Loading } from './loading'
 type Props = Partial<PropsTypes> & {
     empty: boolean
     loading: boolean
-    rowsInit: { [key: string]: string | number | boolean }[]
+    currentPage: number
     sortable: (value: string, sort: boolean) => void
 }
 
@@ -23,8 +23,9 @@ export const Main = ({
     loading,
     className,
     rtl,
-    rowsInit,
+    pageSize = 5,
     rowHeight,
+    currentPage,
     sortable,
 }: Props): JSX.Element => {
     const [isSort, setIsSort] = useState<boolean>(false)
@@ -93,7 +94,12 @@ export const Main = ({
                                         style={{ height: rowHeight }}
                                     >
                                         {showRowNumber && (
-                                            <td>{rowsInit.indexOf(row) + 1}</td>
+                                            <td>
+                                                {rows.indexOf(row) +
+                                                    1 +
+                                                    pageSize *
+                                                        (currentPage - 1)}
+                                            </td>
                                         )}
                                         {columns?.map((c) => (
                                             <td key={uuidv4()}>
