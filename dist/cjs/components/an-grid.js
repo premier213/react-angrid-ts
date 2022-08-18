@@ -30,12 +30,12 @@ var paginate_1 = require("./paginate");
 var table_1 = require("./table");
 var range = [5, 10, 20, 50, 100, 200, 500];
 var Main = function (_a) {
-    var _b = _a.className, className = _b === void 0 ? '' : _b, _c = _a.theme, theme = _c === void 0 ? 'light' : _c, _d = _a.rowHeight, rowHeight = _d === void 0 ? 30 : _d, _e = _a.showRowNumber, showRowNumber = _e === void 0 ? true : _e, _f = _a.columnNumberTitle, columnNumberTitle = _f === void 0 ? '#' : _f, columns = _a.columns, rows = _a.rows, _g = _a.loading, loading = _g === void 0 ? false : _g, _h = _a.pageSize, pageSize = _h === void 0 ? 20 : _h, _j = _a.onPageChange, onPageChange = _j === void 0 ? function () { } : _j, _k = _a.showTotalRecord, showTotalRecord = _k === void 0 ? false : _k, _l = _a.showCurrentPage, showCurrentPage = _l === void 0 ? false : _l, _m = _a.showNumberOfPage, showNumberOfPage = _m === void 0 ? false : _m, _o = _a.showPageRange, showPageRange = _o === void 0 ? true : _o, _p = _a.showPageSelect, showPageSelect = _p === void 0 ? true : _p, _q = _a.showPageNumber, showPageNumber = _q === void 0 ? true : _q, _r = _a.showPageArrow, showPageArrow = _r === void 0 ? true : _r, _s = _a.bordered, bordered = _s === void 0 ? false : _s, _t = _a.textCurrent, textCurrent = _t === void 0 ? locale_1.locale.fa.current : _t, _u = _a.textTotal, textTotal = _u === void 0 ? locale_1.locale.fa.total : _u, _v = _a.textNumber, textNumber = _v === void 0 ? locale_1.locale.fa.number : _v, _w = _a.textEmpty, textEmpty = _w === void 0 ? locale_1.locale.fa.empty : _w, _x = _a.textPage, textPage = _x === void 0 ? locale_1.locale.fa.page : _x, _y = _a.totalCount, totalCount = _y === void 0 ? rows.length : _y, _z = _a.rtl, rtl = _z === void 0 ? false : _z;
-    var _0 = (0, react_1.useState)(true), isLoading = _0[0], setIsLoading = _0[1];
-    var _1 = (0, react_1.useState)(false), isEmpty = _1[0], setIsEmpty = _1[1];
-    var _2 = (0, react_1.useState)([]), isRow = _2[0], setIsRow = _2[1];
-    var _3 = (0, react_1.useState)(pageSize), isSize = _3[0], setIsSize = _3[1];
-    var _4 = (0, react_1.useState)(1), page = _4[0], setPage = _4[1];
+    var _b = _a.className, className = _b === void 0 ? '' : _b, _c = _a.theme, theme = _c === void 0 ? 'light' : _c, _d = _a.rowHeight, rowHeight = _d === void 0 ? 30 : _d, _e = _a.showRowNumber, showRowNumber = _e === void 0 ? true : _e, _f = _a.columnNumberTitle, columnNumberTitle = _f === void 0 ? '#' : _f, columns = _a.columns, rows = _a.rows, _g = _a.loading, loading = _g === void 0 ? false : _g, _h = _a.pageSize, pageSize = _h === void 0 ? 20 : _h, _j = _a.onPageChange, onPageChange = _j === void 0 ? function () { } : _j, _k = _a.showTotalRecord, showTotalRecord = _k === void 0 ? false : _k, _l = _a.showCurrentPage, showCurrentPage = _l === void 0 ? false : _l, _m = _a.showNumberOfPage, showNumberOfPage = _m === void 0 ? false : _m, _o = _a.showPageRange, showPageRange = _o === void 0 ? true : _o, _p = _a.showPageSelect, showPageSelect = _p === void 0 ? true : _p, _q = _a.showPageNumber, showPageNumber = _q === void 0 ? true : _q, _r = _a.showPageArrow, showPageArrow = _r === void 0 ? true : _r, _s = _a.bordered, bordered = _s === void 0 ? false : _s, _t = _a.textCurrent, textCurrent = _t === void 0 ? locale_1.locale.fa.current : _t, _u = _a.textTotal, textTotal = _u === void 0 ? locale_1.locale.fa.total : _u, _v = _a.textNumber, textNumber = _v === void 0 ? locale_1.locale.fa.number : _v, _w = _a.textEmpty, textEmpty = _w === void 0 ? locale_1.locale.fa.empty : _w, _x = _a.textPage, textPage = _x === void 0 ? locale_1.locale.fa.page : _x, _y = _a.totalCount, totalCount = _y === void 0 ? rows.length : _y, _z = _a.rtl, rtl = _z === void 0 ? false : _z, _0 = _a.internalPaginate, internalPaginate = _0 === void 0 ? true : _0;
+    var _1 = (0, react_1.useState)(true), isLoading = _1[0], setIsLoading = _1[1];
+    var _2 = (0, react_1.useState)(false), isEmpty = _2[0], setIsEmpty = _2[1];
+    var _3 = (0, react_1.useState)([]), isRow = _3[0], setIsRow = _3[1];
+    var _4 = (0, react_1.useState)(pageSize), isSize = _4[0], setIsSize = _4[1];
+    var _5 = (0, react_1.useState)(1), page = _5[0], setPage = _5[1];
     var indexOfLastRecord = page * isSize;
     var indexOfFirstRecord = indexOfLastRecord - isSize;
     var sortRows = (0, react_1.useCallback)(function (value, desc) {
@@ -52,7 +52,7 @@ var Main = function (_a) {
     };
     (0, react_1.useEffect)(function () {
         if (typeof onPageChange !== 'undefined') {
-            onPageChange(page, pageSize);
+            onPageChange({ page: page, pageSize: pageSize });
         }
     }, [onPageChange, page, pageSize]);
     (0, react_1.useEffect)(function () {
@@ -62,9 +62,14 @@ var Main = function (_a) {
         }
         else {
             setIsEmpty(false);
-            setIsRow(rows === null || rows === void 0 ? void 0 : rows.slice(indexOfFirstRecord, indexOfLastRecord));
+            if (internalPaginate) {
+                setIsRow(rows === null || rows === void 0 ? void 0 : rows.slice(indexOfFirstRecord, indexOfLastRecord));
+            }
+            else {
+                setIsRow(rows);
+            }
         }
-    }, [indexOfFirstRecord, indexOfLastRecord, loading, rows]);
+    }, [indexOfFirstRecord, indexOfLastRecord, internalPaginate, loading, rows]);
     (0, react_1.useEffect)(function () {
         if (pageSize && range.includes(pageSize)) {
             setIsSize(pageSize);

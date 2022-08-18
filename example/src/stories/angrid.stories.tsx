@@ -140,5 +140,6 @@ Default.args = {
     textEmpty: 'No Data',
     textPage: 'Page',
     bordered: false,
-    onPageChange: (page: number, size: number) => console.log(page, size),
+    internalPaginate: true,
+    onPageChange: ({ page, pageSize }) => console.log(page, pageSize),
 }

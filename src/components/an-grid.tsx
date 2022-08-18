@@ -22,6 +22,11 @@ export interface Columns {
     sortable?: boolean
     render?: (row: RowsType) => JSX.Element
 }
+
+export type State = {
+    page: number
+    pageSize: number
+}
 export interface PropsTypes {
     className?: string
     theme?: 'dark' | 'light'
@@ -47,7 +52,8 @@ export interface PropsTypes {
     textEmpty?: string
     textPage?: string
     rtl?: boolean
-    onPageChange?: (current: number, size: number) => void
+    internalPaginate?: boolean
+    onPageChange?: (stat: State) => void
 }
 
 const range = [5, 10, 20, 50, 100, 200, 500]
@@ -78,11 +84,11 @@ const Main = ({
     textPage = locale.fa.page,
     totalCount = rows.length,
     rtl = false,
+    internalPaginate = true,
 }: PropsTypes): JSX.Element => {
     const [isLoading, setIsLoading] = useState(true)
     const [isEmpty, setIsEmpty] = useState(false)
     const [isRow, setIsRow] = useState<PropsTypes['rows']>([])
-
     const [isSize, setIsSize] = useState(pageSize)
     const [page, setPage] = useState<number>(1)
     const indexOfLastRecord = page * isSize
@@ -109,7 +115,7 @@ const Main = ({
 
     useEffect(() => {
         if (typeof onPageChange !== 'undefined') {
-            onPageChange(page, pageSize)
+            onPageChange({ page, pageSize })
         }
     }, [onPageChange, page, pageSize])
 
@@ -119,9 +125,13 @@ const Main = ({
             setIsEmpty(true)
         } else {
             setIsEmpty(false)
-            setIsRow(rows?.slice(indexOfFirstRecord, indexOfLastRecord))
+            if (internalPaginate) {
+                setIsRow(rows?.slice(indexOfFirstRecord, indexOfLastRecord))
+            } else {
+                setIsRow(rows)
+            }
         }
-    }, [indexOfFirstRecord, indexOfLastRecord, loading, rows])
+    }, [indexOfFirstRecord, indexOfLastRecord, internalPaginate, loading, rows])
 
     useEffect(() => {
         if (pageSize && range.includes(pageSize)) {

@@ -98,6 +98,7 @@ const columns = [
 | textEmpty         | string  | false   | string     |
 | textPage          | string  | false   | string     |
 | rtl               | false   | false   | boolean    |
+| internalPaginate  | true    | false   | boolean    |
 | onPageChange      | -       | true    | function   |
 
 ### Pull Request
