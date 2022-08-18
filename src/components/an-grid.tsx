@@ -31,6 +31,7 @@ export interface PropsTypes {
     columns: Columns[]
     rows: RowsType[]
     pageSize?: number
+    totalCount?: number
     loading?: boolean
     showTotalRecord?: boolean
     showCurrentPage?: boolean
@@ -75,6 +76,7 @@ const Main = ({
     textNumber = locale.fa.number,
     textEmpty = locale.fa.empty,
     textPage = locale.fa.page,
+    totalCount = rows.length,
     rtl = false,
 }: PropsTypes): JSX.Element => {
     const [isLoading, setIsLoading] = useState(true)
@@ -151,7 +153,7 @@ const Main = ({
                         textTotal={textTotal}
                         textNumber={textNumber}
                         rtl={rtl}
-                        totalCount={rows.length}
+                        totalCount={totalCount}
                         pageSize={isSize}
                         onPageChange={onPageChange}
                         range={range}

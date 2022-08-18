@@ -37,13 +37,15 @@ const columns = [
         field: 'age',
         headerName: 'Age',
         description: 'age of user',
-
         sortable: true,
     },
     {
         field: 'delete',
         headerName: 'delete(component cell)',
         description: 'delete user',
+        render: () => {
+            return <button>delete</button>
+        },
     },
 ]
 
@@ -122,6 +124,7 @@ Default.args = {
     rowHeight: 40,
     columnNumberTitle: 'number',
     loading: false,
+    totalCount: 20,
     pageSize: 5,
     showTotalRecord: true,
     showRowNumber: true,

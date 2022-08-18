@@ -83,6 +83,7 @@ const columns = [
 | rows              | []      | true    | array      |
 | pageSize          | 20      | false   | number     |
 | loading           | false   | false   | boolean    |
+| totalCount        | -       | false   | number     |
 | showTotalRecord   | false   | false   | boolean    |
 | showCurrentPage   | false   | false   | boolean    |
 | showNumberOfPage  | false   | false   | boolean    |

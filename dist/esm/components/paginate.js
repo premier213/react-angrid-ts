@@ -9,7 +9,7 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import { jsxs as _jsxs, jsx as _jsx, Fragment as _Fragment } from "react/jsx-runtime";
+import { jsxs as _jsxs, jsx as _jsx } from "react/jsx-runtime";
 import { memo, useCallback, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { FiChevronLeft, FiChevronRight } from './icons';
@@ -73,7 +73,7 @@ export var Main = function (_a) {
         changeSize(+event.target.value);
         setPage(1);
     };
-    return (_jsxs("div", __assign({ className: 'paginate' }, { children: [_jsxs("div", __assign({ className: 'paginateBox' }, { children: [showTotalRecord && (_jsx("div", __assign({ className: 'textPage' }, { children: _jsxs("div", { children: [textTotal, ":", totalCount] }) }))), showCurrentPage && (_jsx("div", __assign({ className: 'textPage' }, { children: totalCount && totalCount > pageSize && (_jsxs(_Fragment, { children: [textCurrent, ": ", page] })) }))), showNumberOfPage && (_jsx("div", __assign({ className: 'textPage' }, { children: totalCount && totalCount > pageSize && (_jsxs(_Fragment, { children: [textNumber, ": ", totalPageCount] })) })))] })), _jsxs("div", __assign({ className: 'paginateBox' }, { children: [_jsxs("div", { children: [showPageArrow && totalCount && totalCount > pageSize && (_jsx("button", __assign({ onClick: function () {
+    return (_jsxs("div", __assign({ className: 'paginate' }, { children: [_jsxs("div", __assign({ className: 'paginateBox' }, { children: [showCurrentPage && (_jsx("div", __assign({ className: 'textPage' }, { children: totalCount && totalCount > pageSize && (_jsxs("div", { children: [textCurrent, ": ", page] })) }))), showNumberOfPage && (_jsx("div", __assign({ className: 'textPage' }, { children: totalCount && totalCount > pageSize && (_jsxs("div", __assign({ className: 'bordered-text' }, { children: [textNumber, ": ", totalPageCount] }))) }))), showTotalRecord && (_jsx("div", __assign({ className: 'textPage' }, { children: _jsxs("div", { children: [textTotal, ":", totalCount] }) })))] })), _jsxs("div", __assign({ className: 'paginateBox' }, { children: [_jsxs("div", { children: [showPageArrow && totalCount && totalCount > pageSize && (_jsx("button", __assign({ onClick: function () {
                                     return pageChanging(PaginateType.PREV, 1);
                                 }, type: 'button', className: page === 1 ? 'disabled' : '' }, { children: rtl ? _jsx(FiChevronRight, {}) : _jsx(FiChevronLeft, {}) }))), showPageNumber && totalCount && totalCount > pageSize && (_jsx("span", { children: slices.map(function (item) { return (_jsx("button", __assign({ className: item === page ? 'active' : '', onClick: function () {
                                         return pageChanging(PaginateType.SELECT, item);

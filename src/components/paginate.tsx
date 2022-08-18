@@ -98,21 +98,13 @@ export const Main = ({
     return (
         <div className='paginate'>
             <div className='paginateBox'>
-                {/* total record */}
-                {showTotalRecord && (
-                    <div className='textPage'>
-                        <div>
-                            {textTotal}:{totalCount}
-                        </div>
-                    </div>
-                )}
                 {/* current page */}
                 {showCurrentPage && (
                     <div className='textPage'>
                         {totalCount && totalCount > pageSize && (
-                            <>
+                            <div>
                                 {textCurrent}: {page}
-                            </>
+                            </div>
                         )}
                     </div>
                 )}
@@ -120,10 +112,18 @@ export const Main = ({
                 {showNumberOfPage && (
                     <div className='textPage'>
                         {totalCount && totalCount > pageSize && (
-                            <>
+                            <div className='bordered-text'>
                                 {textNumber}: {totalPageCount}
-                            </>
+                            </div>
                         )}
+                    </div>
+                )}
+                {/* total record */}
+                {showTotalRecord && (
+                    <div className='textPage'>
+                        <div>
+                            {textTotal}:{totalCount}
+                        </div>
                     </div>
                 )}
             </div>
