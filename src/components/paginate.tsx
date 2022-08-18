@@ -64,17 +64,21 @@ export const Main = ({
      * @param {number} item
      * @returns {void} set page & callback onPageChange
      */
+
     const pageChanging = useCallback(
         (value: PaginateType, item: number): void => {
             switch (value) {
                 case PaginateType.NEXT:
                     if (page < totalPageCount) setPage(page + item)
+
                     break
                 case PaginateType.PREV:
                     if (page > 1) setPage(page - item)
+
                     break
                 case PaginateType.SELECT:
                     setPage(item)
+
                     break
 
                 default:

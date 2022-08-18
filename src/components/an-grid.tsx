@@ -108,8 +108,10 @@ const Main = ({
     }
 
     useEffect(() => {
-        onPageChange(page, isSize)
-    }, [isSize, onPageChange, page])
+        if (typeof onPageChange !== 'undefined') {
+            onPageChange(page, pageSize)
+        }
+    }, [onPageChange, page, pageSize])
 
     useEffect(() => {
         setIsLoading(loading)
@@ -159,7 +161,6 @@ const Main = ({
                         rtl={rtl}
                         totalCount={totalCount}
                         pageSize={isSize}
-                        onPageChange={onPageChange}
                         range={range}
                         showTotalRecord={showTotalRecord}
                         showCurrentPage={showCurrentPage}

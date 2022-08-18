@@ -124,7 +124,7 @@ Default.args = {
     rowHeight: 40,
     columnNumberTitle: 'number',
     loading: false,
-    totalCount: 20,
+    totalCount: 11,
     pageSize: 5,
     showTotalRecord: true,
     showRowNumber: true,

@@ -51,8 +51,10 @@ var Main = function (_a) {
         setPage(pageNumber);
     };
     (0, react_1.useEffect)(function () {
-        onPageChange(page, isSize);
-    }, [isSize, onPageChange, page]);
+        if (typeof onPageChange !== 'undefined') {
+            onPageChange(page, pageSize);
+        }
+    }, [onPageChange, page, pageSize]);
     (0, react_1.useEffect)(function () {
         setIsLoading(loading);
         if (rows.length === 0) {
@@ -70,6 +72,6 @@ var Main = function (_a) {
     }, [pageSize]);
     return ((0, jsx_runtime_1.jsx)("div", __assign({ className: "angrid ".concat(theme, " ").concat(className), style: { minHeight: rows.length === 0 ? '300px' : '' } }, { children: (0, jsx_runtime_1.jsxs)("div", __assign({ className: 'asax' }, { children: [(0, jsx_runtime_1.jsx)(table_1.Table, { rowHeight: rowHeight, textEmpty: textEmpty, rtl: rtl, className: bordered ? 'bordered' : '', showRowNumber: showRowNumber, columnNumberTitle: columnNumberTitle, columns: columns, rows: isRow, pageSize: isSize, currentPage: page, empty: isEmpty, loading: isLoading, sortable: function (value, sort) {
                         return sortRows(value, sort);
-                    } }), !isEmpty && !isLoading && ((0, jsx_runtime_1.jsx)(paginate_1.Paginate, { textCurrent: textCurrent, textTotal: textTotal, textNumber: textNumber, rtl: rtl, totalCount: totalCount, pageSize: isSize, onPageChange: onPageChange, range: range, showTotalRecord: showTotalRecord, showCurrentPage: showCurrentPage, showNumberOfPage: showNumberOfPage, showPageRange: showPageRange, showPageSelect: showPageSelect, showPageNumber: showPageNumber, showPageArrow: showPageArrow, page: page, setPage: handleSetPage, textPage: textPage, changeSize: setIsSize }))] })) })));
+                    } }), !isEmpty && !isLoading && ((0, jsx_runtime_1.jsx)(paginate_1.Paginate, { textCurrent: textCurrent, textTotal: textTotal, textNumber: textNumber, rtl: rtl, totalCount: totalCount, pageSize: isSize, range: range, showTotalRecord: showTotalRecord, showCurrentPage: showCurrentPage, showNumberOfPage: showNumberOfPage, showPageRange: showPageRange, showPageSelect: showPageSelect, showPageNumber: showPageNumber, showPageArrow: showPageArrow, page: page, setPage: handleSetPage, textPage: textPage, changeSize: setIsSize }))] })) })));
 };
 exports.Angrid = (0, react_1.memo)(Main);
