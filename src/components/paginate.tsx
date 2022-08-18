@@ -21,7 +21,6 @@ type Props = Partial<PropsTypes> & {
 export const Main = ({
     totalCount = 1,
     pageSize = 20,
-    onPageChange,
     range,
     showTotalRecord,
     showCurrentPage,
@@ -43,9 +42,6 @@ export const Main = ({
     const { pages, totalPageCount } = usePagination(totalCount, pageSize)
 
     useEffect(() => {
-        if (typeof onPageChange !== 'undefined') {
-            onPageChange(page, pageSize)
-        }
         if (pages.length > 5) {
             let slicer = [1, 2, 3, 4, 5]
             if (page < 3) {
@@ -60,7 +56,7 @@ export const Main = ({
             setSlices(pages)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pageSize, onPageChange, page, pageSize, totalPageCount])
+    }, [page, totalPageCount])
 
     /**
      * @description: handle paginate selection

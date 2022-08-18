@@ -48,6 +48,9 @@ var Main = function (_a) {
         setPage(pageNumber);
     };
     useEffect(function () {
+        onPageChange(page, isSize);
+    }, [isSize, onPageChange, page]);
+    useEffect(function () {
         setIsLoading(loading);
         if (rows.length === 0) {
             setIsEmpty(true);

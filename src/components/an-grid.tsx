@@ -108,6 +108,10 @@ const Main = ({
     }
 
     useEffect(() => {
+        onPageChange(page, isSize)
+    }, [isSize, onPageChange, page])
+
+    useEffect(() => {
         setIsLoading(loading)
         if (rows.length === 0) {
             setIsEmpty(true)

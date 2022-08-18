@@ -1,6 +1,6 @@
 # react-angrid-ts [Demo](https://react-angrid-ts.vercel.app/)
 
-![react-angrid-ts](/example/public/1.png 'react angrid ts').
+![react-angrid-ts](/example/public/2.png 'react angrid ts').
 
 ## Installation
 

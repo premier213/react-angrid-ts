@@ -24,13 +24,10 @@ var PaginateType;
     PaginateType[PaginateType["SELECT"] = 2] = "SELECT";
 })(PaginateType || (PaginateType = {}));
 var Main = function (_a) {
-    var _b = _a.totalCount, totalCount = _b === void 0 ? 1 : _b, _c = _a.pageSize, pageSize = _c === void 0 ? 20 : _c, onPageChange = _a.onPageChange, range = _a.range, showTotalRecord = _a.showTotalRecord, showCurrentPage = _a.showCurrentPage, showNumberOfPage = _a.showNumberOfPage, showPageRange = _a.showPageRange, showPageSelect = _a.showPageSelect, showPageNumber = _a.showPageNumber, showPageArrow = _a.showPageArrow, textNumber = _a.textNumber, textTotal = _a.textTotal, textCurrent = _a.textCurrent, rtl = _a.rtl, page = _a.page, textPage = _a.textPage, changeSize = _a.changeSize, setPage = _a.setPage;
+    var _b = _a.totalCount, totalCount = _b === void 0 ? 1 : _b, _c = _a.pageSize, pageSize = _c === void 0 ? 20 : _c, range = _a.range, showTotalRecord = _a.showTotalRecord, showCurrentPage = _a.showCurrentPage, showNumberOfPage = _a.showNumberOfPage, showPageRange = _a.showPageRange, showPageSelect = _a.showPageSelect, showPageNumber = _a.showPageNumber, showPageArrow = _a.showPageArrow, textNumber = _a.textNumber, textTotal = _a.textTotal, textCurrent = _a.textCurrent, rtl = _a.rtl, page = _a.page, textPage = _a.textPage, changeSize = _a.changeSize, setPage = _a.setPage;
     var _d = (0, react_1.useState)([]), slices = _d[0], setSlices = _d[1];
     var _e = (0, use_pagination_1.usePagination)(totalCount, pageSize), pages = _e.pages, totalPageCount = _e.totalPageCount;
     (0, react_1.useEffect)(function () {
-        if (typeof onPageChange !== 'undefined') {
-            onPageChange(page, pageSize);
-        }
         if (pages.length > 5) {
             var slicer = [1, 2, 3, 4, 5];
             if (page < 3) {
@@ -48,7 +45,7 @@ var Main = function (_a) {
             setSlices(pages);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pageSize, onPageChange, page, pageSize, totalPageCount]);
+    }, [page, totalPageCount]);
     /**
      * @description: handle paginate selection
      * @param {number} paginate type

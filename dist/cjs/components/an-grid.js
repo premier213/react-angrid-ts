@@ -51,6 +51,9 @@ var Main = function (_a) {
         setPage(pageNumber);
     };
     (0, react_1.useEffect)(function () {
+        onPageChange(page, isSize);
+    }, [isSize, onPageChange, page]);
+    (0, react_1.useEffect)(function () {
         setIsLoading(loading);
         if (rows.length === 0) {
             setIsEmpty(true);
