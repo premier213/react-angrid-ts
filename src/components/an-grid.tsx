@@ -139,6 +139,10 @@ const Main = ({
         }
     }, [pageSize])
 
+    const handleChangeSize = (size: number): void => {
+        setIsSize(size)
+    }
+
     return (
         <div
             className={`angrid ${theme} ${className}`}
@@ -182,7 +186,7 @@ const Main = ({
                         page={page}
                         setPage={handleSetPage}
                         textPage={textPage}
-                        changeSize={setIsSize}
+                        changeSize={handleChangeSize}
                     />
                 )}
             </div>
