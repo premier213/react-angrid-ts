@@ -25,7 +25,7 @@ export interface Columns {
 
 export type State = {
     page: number
-    pageSize: number
+    changedPageRange: number
 }
 export interface PropsTypes {
     className?: string
@@ -91,6 +91,7 @@ const Main = ({
     const [isRow, setIsRow] = useState<PropsTypes['rows']>([])
     const [isSize, setIsSize] = useState(pageSize)
     const [page, setPage] = useState<number>(1)
+    const [changedPageRange, setChangedPageRange] = useState(pageSize)
     const indexOfLastRecord = page * isSize
     const indexOfFirstRecord = indexOfLastRecord - isSize
 
@@ -113,11 +114,15 @@ const Main = ({
         setPage(pageNumber)
     }
 
+    const handleChangeSize = (size: number): void => {
+        setChangedPageRange(size)
+    }
+
     useEffect(() => {
         if (typeof onPageChange !== 'undefined') {
-            onPageChange({ page, pageSize })
+            onPageChange({ page, changedPageRange })
         }
-    }, [onPageChange, page, pageSize])
+    }, [changedPageRange, onPageChange, page])
 
     useEffect(() => {
         setIsLoading(loading)
@@ -138,10 +143,6 @@ const Main = ({
             setIsSize(pageSize)
         }
     }, [pageSize])
-
-    const handleChangeSize = (size: number): void => {
-        setIsSize(size)
-    }
 
     return (
         <div

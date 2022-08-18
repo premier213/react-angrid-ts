@@ -141,5 +141,6 @@ Default.args = {
     textPage: 'Page',
     bordered: false,
     internalPaginate: true,
-    onPageChange: ({ page, pageSize }) => console.log(page, pageSize),
+    onPageChange: ({ page, changedPageRange }) =>
+        console.log(page, changedPageRange),
 }

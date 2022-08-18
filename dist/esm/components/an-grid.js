@@ -33,6 +33,7 @@ var Main = function (_a) {
     var _3 = useState([]), isRow = _3[0], setIsRow = _3[1];
     var _4 = useState(pageSize), isSize = _4[0], setIsSize = _4[1];
     var _5 = useState(1), page = _5[0], setPage = _5[1];
+    var _6 = useState(pageSize), changedPageRange = _6[0], setChangedPageRange = _6[1];
     var indexOfLastRecord = page * isSize;
     var indexOfFirstRecord = indexOfLastRecord - isSize;
     var sortRows = useCallback(function (value, desc) {
@@ -47,11 +48,14 @@ var Main = function (_a) {
     var handleSetPage = function (pageNumber) {
         setPage(pageNumber);
     };
+    var handleChangeSize = function (size) {
+        setChangedPageRange(size);
+    };
     useEffect(function () {
         if (typeof onPageChange !== 'undefined') {
-            onPageChange({ page: page, pageSize: pageSize });
+            onPageChange({ page: page, changedPageRange: changedPageRange });
         }
-    }, [onPageChange, page, pageSize]);
+    }, [changedPageRange, onPageChange, page]);
     useEffect(function () {
         setIsLoading(loading);
         if (rows.length === 0) {
@@ -72,9 +76,6 @@ var Main = function (_a) {
             setIsSize(pageSize);
         }
     }, [pageSize]);
-    var handleChangeSize = function (size) {
-        setIsSize(size);
-    };
     return (_jsx("div", __assign({ className: "angrid ".concat(theme, " ").concat(className), style: { minHeight: rows.length === 0 ? '300px' : '' } }, { children: _jsxs("div", __assign({ className: 'asax' }, { children: [_jsx(Table, { rowHeight: rowHeight, textEmpty: textEmpty, rtl: rtl, className: bordered ? 'bordered' : '', showRowNumber: showRowNumber, columnNumberTitle: columnNumberTitle, columns: columns, rows: isRow, pageSize: isSize, currentPage: page, empty: isEmpty, loading: isLoading, sortable: function (value, sort) {
                         return sortRows(value, sort);
                     } }), !isEmpty && !isLoading && (_jsx(Paginate, { textCurrent: textCurrent, textTotal: textTotal, textNumber: textNumber, rtl: rtl, totalCount: totalCount, pageSize: isSize, range: range, showTotalRecord: showTotalRecord, showCurrentPage: showCurrentPage, showNumberOfPage: showNumberOfPage, showPageRange: showPageRange, showPageSelect: showPageSelect, showPageNumber: showPageNumber, showPageArrow: showPageArrow, page: page, setPage: handleSetPage, textPage: textPage, changeSize: handleChangeSize }))] })) })));

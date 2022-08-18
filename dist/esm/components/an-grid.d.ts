@@ -17,7 +17,7 @@ export interface Columns {
 }
 export declare type State = {
     page: number;
-    pageSize: number;
+    changedPageRange: number;
 };
 export interface PropsTypes {
     className?: string;
