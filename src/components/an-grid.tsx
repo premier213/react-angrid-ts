@@ -53,6 +53,7 @@ export interface PropsTypes {
     textPage?: string
     rtl?: boolean
     internalPaginate?: boolean
+    resetPage?: boolean
     onPageChange?: (stat: State) => void
 }
 
@@ -69,6 +70,7 @@ const Main = ({
     loading = false,
     pageSize = 20,
     onPageChange = (): void => {},
+    resetPage = false,
     showTotalRecord = false,
     showCurrentPage = false,
     showNumberOfPage = false,
@@ -117,6 +119,12 @@ const Main = ({
     const handleChangeSize = (size: number): void => {
         setChangedPageRange(size)
     }
+
+    useEffect(() => {
+        if (resetPage) {
+            setPage(1)
+        }
+    }, [page, resetPage])
 
     useEffect(() => {
         if (typeof onPageChange !== 'undefined') {

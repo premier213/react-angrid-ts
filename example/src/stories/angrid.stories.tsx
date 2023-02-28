@@ -121,6 +121,7 @@ Default.args = {
     rows: data,
     columns,
     rtl: false,
+    resetPage: false,
     rowHeight: 40,
     columnNumberTitle: 'number',
     loading: false,
