@@ -9,6 +9,11 @@ export interface RowsType {
     [key: string]: any
 }
 
+export interface State {
+    page: number
+    pageSize: number
+}
+
 export type Locale = {
     [key: string]: string
 }
@@ -23,12 +28,9 @@ export interface Columns {
     render?: (row: RowsType) => JSX.Element
 }
 
-export type State = {
-    page: number
-    changedPageRange: number
-}
 export interface PropsTypes {
     className?: string
+    pageNumber?: number
     theme?: 'dark' | 'light'
     rowHeight?: number
     columnNumberTitle?: string
@@ -53,8 +55,7 @@ export interface PropsTypes {
     textPage?: string
     rtl?: boolean
     internalPaginate?: boolean
-    resetPage?: boolean
-    onPageChange?: (stat: State) => void
+    onPageChange?: (state: State) => void
 }
 
 const range = [5, 10, 20, 50, 100, 200, 500]
@@ -63,6 +64,7 @@ const Main = ({
     className = '',
     theme = 'light',
     rowHeight = 30,
+    pageNumber = 1,
     showRowNumber = true,
     columnNumberTitle = '#',
     columns,
@@ -70,7 +72,6 @@ const Main = ({
     loading = false,
     pageSize = 20,
     onPageChange = (): void => {},
-    resetPage = false,
     showTotalRecord = false,
     showCurrentPage = false,
     showNumberOfPage = false,
@@ -91,11 +92,18 @@ const Main = ({
     const [isLoading, setIsLoading] = useState(true)
     const [isEmpty, setIsEmpty] = useState(false)
     const [isRow, setIsRow] = useState<PropsTypes['rows']>([])
-    const [isSize, setIsSize] = useState(pageSize)
-    const [page, setPage] = useState<number>(1)
-    const [changedPageRange, setChangedPageRange] = useState(pageSize)
-    const indexOfLastRecord = page * isSize
-    const indexOfFirstRecord = indexOfLastRecord - isSize
+    const [indexOfLastRecord, setIndexOfLastRecord] = useState<number>()
+    const [indexOfFirstRecord, setIndexOfFirstRecord] = useState<number>()
+
+
+    useEffect(() => {
+        setIndexOfLastRecord(pageNumber * pageSize)
+    }, [pageNumber, pageSize])
+
+    useEffect(() => {
+        if (indexOfLastRecord)
+            setIndexOfFirstRecord(indexOfLastRecord - pageSize)
+    }, [indexOfLastRecord, pageSize])
 
     const sortRows = useCallback(
         (value: string, desc: boolean): void => {
@@ -112,25 +120,14 @@ const Main = ({
         [isRow]
     )
 
-    const handleSetPage = (pageNumber: number): void => {
-        setPage(pageNumber)
+    const handleSetPage = (page: number): void => {
+        onPageChange({ page, pageSize })
     }
 
-    const handleChangeSize = (size: number): void => {
-        setChangedPageRange(size)
+    const handleChangeSize = (pageSizee: number): void => {
+        onPageChange({ page: 1, pageSize: pageSizee })
     }
 
-    useEffect(() => {
-        if (resetPage) {
-            setPage(1)
-        }
-    }, [page, resetPage])
-
-    useEffect(() => {
-        if (typeof onPageChange !== 'undefined') {
-            onPageChange({ page, changedPageRange })
-        }
-    }, [changedPageRange, onPageChange, page])
 
     useEffect(() => {
         setIsLoading(loading)
@@ -146,11 +143,6 @@ const Main = ({
         }
     }, [indexOfFirstRecord, indexOfLastRecord, internalPaginate, loading, rows])
 
-    useEffect(() => {
-        if (pageSize && range.includes(pageSize)) {
-            setIsSize(pageSize)
-        }
-    }, [pageSize])
 
     return (
         <div
@@ -167,8 +159,8 @@ const Main = ({
                     columnNumberTitle={columnNumberTitle}
                     columns={columns}
                     rows={isRow}
-                    pageSize={isSize}
-                    currentPage={page}
+                    pageSize={pageSize}
+                    currentPage={pageNumber}
                     empty={isEmpty}
                     loading={isLoading}
                     sortable={(value: string, sort: boolean): void =>
@@ -183,7 +175,7 @@ const Main = ({
                         textNumber={textNumber}
                         rtl={rtl}
                         totalCount={totalCount}
-                        pageSize={isSize}
+                        pageSize={pageSize}
                         range={range}
                         showTotalRecord={showTotalRecord}
                         showCurrentPage={showCurrentPage}
@@ -192,7 +184,7 @@ const Main = ({
                         showPageSelect={showPageSelect}
                         showPageNumber={showPageNumber}
                         showPageArrow={showPageArrow}
-                        page={page}
+                        page={pageNumber}
                         setPage={handleSetPage}
                         textPage={textPage}
                         changeSize={handleChangeSize}
