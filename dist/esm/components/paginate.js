@@ -68,7 +68,6 @@ export var Main = function (_a) {
     }, [page, setPage, totalPageCount]);
     var pageRangeEvent = function (event) {
         changeSize(+event.target.value);
-        setPage(1);
     };
     return (_jsxs("div", __assign({ className: 'paginate' }, { children: [_jsxs("div", __assign({ className: 'paginateBox' }, { children: [showCurrentPage && (_jsx("div", __assign({ className: 'textPage' }, { children: totalCount && totalCount > pageSize && (_jsxs("div", { children: [textCurrent, ": ", page] })) }))), showNumberOfPage && (_jsx("div", __assign({ className: 'textPage' }, { children: totalCount && totalCount > pageSize && (_jsxs("div", __assign({ className: 'bordered-text' }, { children: [textNumber, ": ", totalPageCount] }))) }))), showTotalRecord && (_jsx("div", __assign({ className: 'textPage' }, { children: _jsxs("div", { children: [textTotal, ":", totalCount] }) })))] })), _jsxs("div", __assign({ className: 'paginateBox' }, { children: [_jsxs("div", { children: [showPageArrow && totalCount && totalCount > pageSize && (_jsx("button", __assign({ onClick: function () {
                                     return pageChanging(PaginateType.PREV, 1);

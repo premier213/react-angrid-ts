@@ -3,6 +3,10 @@ import { locale } from './locale';
 export interface RowsType {
     [key: string]: any;
 }
+export interface State {
+    page: number;
+    pageSize: number;
+}
 export declare type Locale = {
     [key: string]: string;
 };
@@ -15,12 +19,9 @@ export interface Columns {
     sortable?: boolean;
     render?: (row: RowsType) => JSX.Element;
 }
-export declare type State = {
-    page: number;
-    changedPageRange: number;
-};
 export interface PropsTypes {
     className?: string;
+    pageNumber?: number;
     theme?: 'dark' | 'light';
     rowHeight?: number;
     columnNumberTitle?: string;
@@ -45,7 +46,6 @@ export interface PropsTypes {
     textPage?: string;
     rtl?: boolean;
     internalPaginate?: boolean;
-    resetPage?: boolean;
-    onPageChange?: (stat: State) => void;
+    onPageChange?: (state: State) => void;
 }
-export declare const Angrid: import("react").MemoExoticComponent<({ className, theme, rowHeight, showRowNumber, columnNumberTitle, columns, rows, loading, pageSize, onPageChange, resetPage, showTotalRecord, showCurrentPage, showNumberOfPage, showPageRange, showPageSelect, showPageNumber, showPageArrow, bordered, textCurrent, textTotal, textNumber, textEmpty, textPage, totalCount, rtl, internalPaginate, }: PropsTypes) => JSX.Element>;
+export declare const Angrid: import("react").MemoExoticComponent<({ className, theme, rowHeight, pageNumber, showRowNumber, columnNumberTitle, columns, rows, loading, pageSize, onPageChange, showTotalRecord, showCurrentPage, showNumberOfPage, showPageRange, showPageSelect, showPageNumber, showPageArrow, bordered, textCurrent, textTotal, textNumber, textEmpty, textPage, totalCount, rtl, internalPaginate, }: PropsTypes) => JSX.Element>;
